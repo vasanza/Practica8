@@ -38,7 +38,7 @@ void serial_begin(){
 	UCSR0A=0b00000010;	//el bit 1 (U2X0) se pone en uno para duplicar la velocidad y poder utilizar frecuencias desde 1MHz
 	UCSR0B=0b10011000;	//habilitar interrupcion por recepcion / transmisión y recepción habilitados a 8 bits
 	UCSR0C=0b00000110;	//asíncrono, sin bit de paridad, 1 bit de parada a 8 bits
-	valor_UBBR0 = F_CPU/16.0/BAUD;	//Definir la constante BAUD al inicio del código
+	valor_UBBR0 = F_CPU/(16.0*BAUD);	//Definir la constante BAUD al inicio del código
         if(UCSR0A & (1<<U2X0)) valor_UBBR0 *= 2;
 	UBRR0=valor_UBBR0 - 1;
         sei();
